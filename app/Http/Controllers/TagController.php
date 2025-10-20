@@ -1,49 +1,72 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Tag;
-use App\Models\Post;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use app\Models\Tag;
 class TagController extends Controller
 {
-    //
-    function index()
-    {
-        $date = Tag::all();
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {  $date = Tag::all();
         return view('tags.index', ["tags" => $date]);
+        //
     }
-    function show($id)
-    {
 
-        $post = Tag::findOrFail($id);
-        return view('tag.show', ["tag" => $post]);
-    }
-    function create()
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
+        //
         Tag::create([
             "title" => "software engineering",
 
         ]);
         return redirect('/tags');
+    
     }
-    function testManytoMany()
-    {
-        $post1 = Post::find(3);
-        $post2 = Post::find(4);
-        //$post1->tags()->attach([1, 2]);
-        $post2->tags()->attach([2]);
-        return response()->json([
-            'post1' => $post1->tags,
-            'post2' => $post2->tags,
 
-        ]);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
     }
-    function reverse(){
-        $tag=Tag::find(1);
-        return response()->json([
-            'title'=>$tag->title,
-            'posts'=>$tag->posts
-        ]);
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {  $post = Tag::findOrFail($id);
+        return view('tag.show', ["tag" => $post]);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

@@ -11,15 +11,18 @@ Route::get('/about',[indexController::class,'about']);
 Route::get('/contact',[indexController::class,'contact']);
 Route::get('/job',[jobController::class,'index']);
 
-Route::get('/blog/create',[PostController::class,'create']);
- Route::get('/blog',[PostController::class,'index']);
- Route::get('/blog/delete',[PostController::class,'delete']);
- Route::get('/blog/{id}',[PostController::class,'show']);
+Route::resource('blog',PostController::class);//equals to all what is in below
+//Route::post('/blog',[PostController::class,'create']);
+// Route::get('/blog',[PostController::class,'index']);
+// Route::delete('/blog/{id}',[PostController::class,'delete']);
+ //Route::get('/blog/{id}',[PostController::class,'show']);
 
- Route::get('/comments',[CommentController::class,'index']);
- Route::get('/comments/create',[CommentController::class,'create']);
+ Route::resource('comment',CommentController::class);
+ //Route::get('/comments',[CommentController::class,'index']);
+ //Route::post('/comments',[CommentController::class,'create']);
 
- Route::get('/tags/create',[TagController::class,'create']);
- Route::get('/tags/test',[TagController::class,'testManytoMany']);
- Route::get('/tags/test2',[TagController::class,'reverse']);
- Route::get('/tags',[TagController::class,'index']);
+ Route::resource('tags',TagController::class);
+ //Route::post('/tags',[TagController::class,'create']);
+//  Route::get('/tags/test',[TagController::class,'testManytoMany']);
+//  Route::get('/tags/test2',[TagController::class,'reverse']);
+//  Route::get('/tags',[TagController::class,'index']);

@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Post;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use app\Models\Post;
 class PostController extends Controller
 {
-    //
-    function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
         $limit=3;
         $page=2;
@@ -15,24 +17,55 @@ class PostController extends Controller
         $date =  Post::skip($skip)->take($limit)->get();
         return view('post.index', ["posts" => $date]);
     }
-    function show($id)
-    {
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //@TODO
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
         $post = Post::findOrFail($id);
         return view('post.show', ["post" => $post]);
     }
-    function create()
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
-        // Post::create([
-        //     "title" => "my secounddddd post",
-        //     "body" => "mt body",
-        //     "published" => true,
-        //     "author" => "mahmoud",
-        // ]);
-        Post::factory(100)->create();
-        return redirect('/blog');
+        //
     }
-    function delete(){
-        Post::destroy(2);
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
